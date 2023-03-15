@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "domain",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ehddnr3473/Domain.git",
+      "state" : {
+        "revision" : "d1bdddf4d0cabd7974e0a47a820ed85420c6f6cd",
+        "version" : "1.6.0"
+      }
+    }
+  ],
+  "version" : 2
+}
