@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ehddnr3473/GoogleMapsGeoCodingSwift.git",
       "state" : {
-        "revision" : "5c7fbf8cc5d9b4d57db75e429903c254d5726cf6",
-        "version" : "0.0.2"
+        "revision" : "c2467bc1e561aa4ff9a96c85dd3cce085df6739d",
+        "version" : "0.0.3"
       }
     }
   ],
