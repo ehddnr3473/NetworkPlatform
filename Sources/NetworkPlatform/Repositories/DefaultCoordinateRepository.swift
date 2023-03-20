@@ -10,7 +10,7 @@ import Domain
 import GoogleMapsGeoCodingSwift
 
 public enum CoordinateRepositoryError: String, Error {
-    case dataTransferServiceError = "네트워크 통신 구성에서 에러가 발생했습니다."
+    case dataTransferServiceError = "네트워크 통신 구성중에 에러가 발생했습니다."
 }
 
 public struct DefaultCoordinateRepository: CoordinateRepository {
@@ -22,7 +22,7 @@ public struct DefaultCoordinateRepository: CoordinateRepository {
     
     public func fetchCoordinate(query: CoordinateQuery) async throws -> Coordinate {
         if let dataTransferService = dataTransferService {
-            return try await dataTransferService.request()
+            return try await dataTransferService.request(with: .init(address: query.query))
         } else {
             throw CoordinateRepositoryError.dataTransferServiceError
         }
