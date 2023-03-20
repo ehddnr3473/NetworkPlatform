@@ -8,9 +8,9 @@
 import Foundation
 
 public struct Configuration {
-    let key: String
+    let key: String?
     
-    public init(key: String) {
+    public init(key: String?) {
         self.key = key
     }
 }
