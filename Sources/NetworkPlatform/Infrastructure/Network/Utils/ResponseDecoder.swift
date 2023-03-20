@@ -15,6 +15,7 @@ struct JSONResponseDecoder: ResponseDecoder {
     private let jsonDecoder = JSONDecoder()
     
     func decode<T>(_ data: Data, type: T.Type) throws -> T where T: Decodable {
+        print(String(data: data, encoding: .utf8)!)
         return try jsonDecoder.decode(T.self, from: data)
     }
 }
