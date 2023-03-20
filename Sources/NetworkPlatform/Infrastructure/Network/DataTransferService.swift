@@ -15,6 +15,7 @@ protocol DataTransferService: AnyObject {
 
 final class DefaultDataTransferService: DataTransferService {
     private let networkService: GeoCodingNetworkService
+    private let decoder: JSONResponseDecoder
     
     public init?() {
         guard let fileURL = Bundle.main.url(forResource: "APIKey", withExtension: "txt") else {
@@ -27,6 +28,7 @@ final class DefaultDataTransferService: DataTransferService {
         do {
             let key = try String(contentsOf: fileURL, encoding: .utf8)
             self.networkService = DefaultGeoCodingNetworkService(key: key)
+            self.decoder = JSONResponseDecoder()
         } catch {
             return nil
         }
@@ -34,7 +36,6 @@ final class DefaultDataTransferService: DataTransferService {
     
     func request(with query: CoordinateRequestDTO) async throws -> Coordinate {
         let data = try await networkService.request(with: query.toNetwork(), EndPoint.default)
-        let decoder = JSONResponseDecoder()
         return try decoder.decode(data, type: CoordinateResponseDTO.self).toDomain()
     }
 }
