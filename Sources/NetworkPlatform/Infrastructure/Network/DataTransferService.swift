@@ -41,6 +41,6 @@ final class DefaultDataTransferService: DataTransferService {
     
     func request(with query: CoordinateRequestDTO) async throws -> Coordinate {
         let data = try await networkService.request(with: query.toNetwork(), EndPoint.default)
-        return try decoder.decode(data, type: CoordinateResponseDTO.self).toDomain()
+        return try decoder.decode(CoordinateResponseDTO.self, from: data).toDomain()
     }
 }
