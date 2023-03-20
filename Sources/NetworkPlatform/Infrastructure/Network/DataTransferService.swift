@@ -10,7 +10,7 @@ import Domain
 import GoogleMapsGeoCodingSwift
 
 protocol DataTransferService: AnyObject {
-    func request() async throws -> Coordinate
+    func request(with query: CoordinateRequestDTO) async throws -> Coordinate
 }
 
 final class DefaultDataTransferService: DataTransferService {
@@ -23,6 +23,7 @@ final class DefaultDataTransferService: DataTransferService {
             #endif
             return nil
         }
+        
         do {
             let key = try String(contentsOf: fileURL, encoding: .utf8)
             self.networkService = DefaultGeoCodingNetworkService(key: key)
@@ -31,21 +32,9 @@ final class DefaultDataTransferService: DataTransferService {
         }
     }
     
-    func request() async throws -> Coordinate {
-        Coordinate(latitude: 0, longitude: 0)
+    func request(with query: CoordinateRequestDTO) async throws -> Coordinate {
+        let data = try await networkService.request(with: query.toNetwork(), EndPoint.default)
+        let decoder = JSONResponseDecoder()
+        return try decoder.decode(data, type: CoordinateResponseDTO.self).toDomain()
     }
 }
-
-protocol ResponseDecoder {
-    func decode<T: Decodable>(_ data: Data) throws -> T
-}
-
-struct JSONResponseDecoder: ResponseDecoder {
-    private let jsonDecoder = JSONDecoder()
-    public init() {}
-    func decode<T>(_ data: Data) throws -> T where T : Decodable {
-        return try jsonDecoder.decode(T.self, from: data)
-    }
-}
-
-
