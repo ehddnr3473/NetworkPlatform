@@ -36,8 +36,8 @@ extension CoordinateResponseDTO {
     func toDomain() throws -> Coordinate {
         if !results.isEmpty {
             return .init(
-                latitude: results[0].geometry.location.lat,
-                longitude: results[0].geometry.location.lng
+                latitude: results[.zero].geometry.location.lat,
+                longitude: results[.zero].geometry.location.lng
             )
         } else {
             throw CoordinateResponseError.emptyResultError
