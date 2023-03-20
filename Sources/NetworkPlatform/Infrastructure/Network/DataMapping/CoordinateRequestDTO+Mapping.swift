@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import GoogleMapsGeoCodingSwift
 
 struct CoordinateRequestDTO: Encodable {
     let address: String
+}
+
+extension CoordinateRequestDTO {
+    func toNetwork() -> GeoCodingQuery {
+        .init(address: address)
+    }
 }
