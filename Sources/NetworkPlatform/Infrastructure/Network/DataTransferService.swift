@@ -7,6 +7,7 @@
 
 import Foundation
 import Domain
+import GoogleMapsGeoCodingSwift
 
 protocol DataTransferService {
     func request() async throws -> Coordinate
@@ -15,8 +16,7 @@ protocol DataTransferService {
 struct DefaultDataTransferService: DataTransferService {
     private let networkService: GeoCodingNetworkService
     
-    func request() async throws -> CoordinateResponseDTO {
-        networkService.request()
+    func request() async throws -> Coordinate {
         // decode
         // mapping
         // repository에서 Coordinate 반환
