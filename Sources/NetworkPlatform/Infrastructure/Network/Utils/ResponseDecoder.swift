@@ -8,13 +8,13 @@
 import Foundation
 
 protocol ResponseDecoder {
-    func decode<T: Decodable>(_ data: Data, type: T.Type) throws -> T
+    func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T
 }
 
 struct JSONResponseDecoder: ResponseDecoder {
     private let jsonDecoder = JSONDecoder()
     
-    func decode<T>(_ data: Data, type: T.Type) throws -> T where T: Decodable {
+    func decode<T: Decodable>(_ type: T.Type, from data: Data) throws -> T {
         return try jsonDecoder.decode(T.self, from: data)
     }
 }
