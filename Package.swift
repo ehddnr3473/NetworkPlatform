@@ -20,6 +20,10 @@ let package = Package(
         .package(
             url: "https://github.com/ehddnr3473/Domain.git",
             .upToNextMajor(from: "1.6.0")
+        ),
+        .package(
+            url: "https://github.com/ehddnr3473/GoogleMapsGeoCodingSwift.git",
+            .upToNextMajor(from: "0.0.1")
         )
     ],
     targets: [
@@ -31,7 +35,10 @@ let package = Package(
                 .product(
                     name: "Domain",
                     package: "Domain"
-                )
+                ),
+                .product(
+                    name: "GoogleMapsGeoCodingSwift",
+                    package: "GoogleMapsGeoCodingSwift")
             ],
             path: "./Sources"
         ),

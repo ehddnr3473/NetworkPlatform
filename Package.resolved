@@ -5,8 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ehddnr3473/Domain.git",
       "state" : {
-        "revision" : "d1bdddf4d0cabd7974e0a47a820ed85420c6f6cd",
-        "version" : "1.6.0"
+        "revision" : "bb19357d84001507086280c7e302785f3f8cd4f3",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "googlemapsgeocodingswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ehddnr3473/GoogleMapsGeoCodingSwift.git",
+      "state" : {
+        "revision" : "c692a128e8d4d252ae8aef96e489ef23a3951412",
+        "version" : "0.0.1"
       }
     }
   ],
