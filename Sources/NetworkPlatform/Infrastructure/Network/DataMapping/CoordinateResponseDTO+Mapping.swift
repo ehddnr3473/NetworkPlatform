@@ -16,17 +16,17 @@ struct CoordinateResponseDTO: Decodable {
     let results: [Result]
     
     // MARK: - Result
-    struct Result: Codable {
+    struct Result: Decodable {
         let geometry: Geometry
     }
     
     // MARK: - Geometry
-    struct Geometry: Codable {
+    struct Geometry: Decodable {
         let location: Location
     }
     
     // MARK: - Location
-    struct Location: Codable {
+    struct Location: Decodable {
         let lat, lng: Double
     }
 }
