@@ -23,7 +23,7 @@ let package = Package(
         ),
         .package(
             url: "https://github.com/ehddnr3473/GoogleMapsGeoCodingSwift.git",
-            .upToNextMajor(from: "0.0.1")
+            .upToNextMajor(from: "0.0.2")
         )
     ],
     targets: [
