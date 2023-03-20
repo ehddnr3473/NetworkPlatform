@@ -9,17 +9,30 @@ import Foundation
 import Domain
 import GoogleMapsGeoCodingSwift
 
-protocol DataTransferService {
+protocol DataTransferService: AnyObject {
     func request() async throws -> Coordinate
 }
 
-struct DefaultDataTransferService: DataTransferService {
+final class DefaultDataTransferService: DataTransferService {
     private let networkService: GeoCodingNetworkService
     
+    public init?() {
+        guard let fileURL = Bundle.main.url(forResource: "APIKey", withExtension: "txt") else {
+            #if DEBUG
+            print("APIKey.txt not found.")
+            #endif
+            return nil
+        }
+        do {
+            let key = try String(contentsOf: fileURL, encoding: .utf8)
+            self.networkService = DefaultGeoCodingNetworkService(key: key)
+        } catch {
+            return nil
+        }
+    }
+    
     func request() async throws -> Coordinate {
-        // decode
-        // mapping
-        // repository에서 Coordinate 반환
+        Coordinate(latitude: 0, longitude: 0)
     }
 }
 
