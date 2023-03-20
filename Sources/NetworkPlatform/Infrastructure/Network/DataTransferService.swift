@@ -17,7 +17,12 @@ final class DefaultDataTransferService: DataTransferService {
     private let networkService: GeoCodingNetworkService
     private let decoder: JSONResponseDecoder
     
-    public init?() {
+    init(configuration: Configuration) {
+        self.networkService = DefaultGeoCodingNetworkService(key: configuration.key)
+        self.decoder = JSONResponseDecoder()
+    }
+    
+    init?() {
         guard let fileURL = Bundle.main.url(forResource: "APIKey", withExtension: "txt") else {
             #if DEBUG
             print("APIKey.txt not found.")
