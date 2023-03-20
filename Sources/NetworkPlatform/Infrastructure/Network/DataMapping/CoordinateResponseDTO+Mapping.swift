@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Domain
 
 struct CoordinateResponseDTO: Decodable {
     let results: [Result]
@@ -23,5 +24,14 @@ struct CoordinateResponseDTO: Decodable {
     // MARK: - Location
     struct Location: Codable {
         let lat, lng: Double
+    }
+}
+
+extension CoordinateResponseDTO {
+    func toDomain() -> Coordinate {
+        .init(
+            latitude: results[0].geometry.location.lat,
+            longitude: results[0].geometry.location.lng
+        )
     }
 }
