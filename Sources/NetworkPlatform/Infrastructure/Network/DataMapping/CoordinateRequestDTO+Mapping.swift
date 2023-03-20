@@ -12,6 +12,7 @@ struct CoordinateRequestDTO: Encodable {
     let address: String
 }
 
+// MARK: - Mapping
 extension CoordinateRequestDTO {
     func toNetwork() -> GeoCodingQuery {
         .init(address: address)
