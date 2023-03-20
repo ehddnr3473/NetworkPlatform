@@ -14,17 +14,13 @@ public enum CoordinateRepositoryError: String, Error {
 }
 
 public struct DefaultCoordinateRepository: CoordinateRepository {
-    private let dataTransferService: DataTransferService?
+    private let dataTransferService: DataTransferService
     
-    public init() {
-        self.dataTransferService = DefaultDataTransferService()
+    public init(configuration: Configuration) {
+        self.dataTransferService = DefaultDataTransferService(configuration: configuration)
     }
     
     public func fetchCoordinate(query: CoordinateQuery) async throws -> Coordinate {
-        if let dataTransferService = dataTransferService {
-            return try await dataTransferService.request(with: .init(address: query.query))
-        } else {
-            throw CoordinateRepositoryError.dataTransferServiceError
-        }
+        return try await dataTransferService.request(with: .init(address: query.query))
     }
 }
